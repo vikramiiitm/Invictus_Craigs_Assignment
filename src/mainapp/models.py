@@ -16,9 +16,12 @@ class Profile(models.Model):
         rem = "removed"
         tos = "tos"
 
-    id = models.CharField(max_length=30,primary_key=True,on_delete=models.CASCADE)
-    loc = models.OneToOneField(Location,max_length=60)
+    id = models.CharField(max_length=30,primary_key=True)
+    loc = models.OneToOneField(Location,max_length=60,on_delete=models.CASCADE)
     userId = models.CharField(max_length=30)
     price = models.IntegerField()
     description = models.CharField(max_length=200,blank=True,null=True)
-    status = models.CharField(max_length=4,choices=Status,default=Status.rem)
+    status = models.CharField(max_length=10,choices=Status.choices,default=Status.rem)
+
+    class Meta:
+        unique_together = (('id',"loc"))

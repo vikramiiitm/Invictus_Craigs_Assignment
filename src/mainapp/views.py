@@ -8,9 +8,10 @@ from rest_framework.renderers import JSONRenderer
 
 class DetailProfile(APIView):
     def get(self,request,format=None):
-        prof = Profile.objects.all()
+        profile = Profile.objects.all()
+        # print()
         # loc = Location.objects.all()
-        res = ProfileSerializer(prof,many=True)
+        res = ProfileSerializer(profile,many=True)
 
         return Response(res.data)
 

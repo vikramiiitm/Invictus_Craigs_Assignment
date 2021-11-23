@@ -11,11 +11,9 @@ class Location(models.Model):
     
 
 class Profile(models.Model):
-
     class Status(models.TextChoices):
         rem = "removed"
         tos = "tos"
-
     id = models.CharField(max_length=30,primary_key=True)
     loc = models.OneToOneField(Location,max_length=60,on_delete=models.CASCADE)
     userId = models.CharField(max_length=30)
